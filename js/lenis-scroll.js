@@ -4,7 +4,7 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-// Wait for DOM to fully load
+// Wait for DOM to fully load before executing
 document.addEventListener("DOMContentLoaded", () => {
   // Register ScrollTrigger with GSAP
   gsap.registerPlugin(ScrollTrigger);
@@ -60,31 +60,40 @@ document.addEventListener("DOMContentLoaded", () => {
   gsap.ticker.lagSmoothing(0);
 
   // ============================================
-  // FIX: Refresh ScrollTrigger multiple times
+  // FIX: Refresh ScrollTrigger on resize
   // ============================================
   
   // Refresh on load
   window.addEventListener("load", () => {
-    ScrollTrigger.refresh();
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
   });
 
-  // Refresh on resize
+  // Refresh on resize - WITH DEBOUNCE
+  let resizeTimeout;
   window.addEventListener("resize", () => {
-    ScrollTrigger.refresh();
+    // Clear previous timeout
+    clearTimeout(resizeTimeout);
+    
+    // Wait for resize to finish
+    resizeTimeout = setTimeout(() => {
+      // Refresh ScrollTrigger
+      ScrollTrigger.refresh();
+      
+      // Refresh again after a moment
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 300);
+    }, 300);
   });
 
-  // Refresh after delays (for dynamic content)
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 300);
-
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 800);
-
-  setTimeout(() => {
-    ScrollTrigger.refresh();
-  }, 1500);
+  // Refresh on orientation change (mobile)
+  window.addEventListener("orientationchange", () => {
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+  });
 
   // ============================================
   // Handle window resize for Lenis
@@ -131,6 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       lenis = new Lenis(newScrollSettings);
       lenis.on("scroll", ScrollTrigger.update);
+      
+      // Refresh after Lenis rebuild
+      setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 200);
     }
   };
 

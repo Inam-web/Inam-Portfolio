@@ -161,3 +161,12 @@ document.addEventListener("DOMContentLoaded", () => {
     initAnimations();
   });
 });
+
+// featured-work.js - Add this at the end
+
+// Refresh ScrollTrigger on resize
+window.addEventListener("resize", () => {
+  setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 300);
+});

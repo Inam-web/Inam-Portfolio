@@ -872,3 +872,65 @@
     max-height: 150px;
   }
 }
+
+
+/* ============================================
+   FEATURED WORK - LOCK MOBILE SIZES
+   ============================================ */
+
+@media (max-width: 1000px) {
+  /* Lock Featured Work Titles */
+  .featured-work .featured-title-wrapper h1 {
+    font-size: 1.8rem !important;
+    transform: none !important;
+    text-align: center !important;
+    width: 100% !important;
+  }
+
+  /* Lock the first "Featured Projects" heading */
+  .featured-work .featured-title-wrapper:first-child h1 {
+    font-size: 2.2rem !important;
+    margin-bottom: 0.5em !important;
+  }
+
+  /* Lock project images container */
+  .featured-title-img {
+    width: 90% !important;
+    max-width: 350px !important;
+    height: 180px !important;
+    margin: 0 auto !important;
+  }
+
+  /* Lock featured work footer text */
+  .featured-work .featured-work-footer p.mn {
+    font-size: 0.75rem !important;
+  }
+
+  /* Lock the "Project Portfolio [05]" text */
+  .featured-work .featured-work-footer p:first-child {
+    font-size: 0.75rem !important;
+  }
+
+  /* Lock view all projects link */
+  .featured-work .featured-work-footer a {
+    font-size: 0.75rem !important;
+  }
+
+  /* Lock indicator dots */
+  .featured-work .featured-work-indicator {
+    display: none !important;
+  }
+
+  /* Fix spacing */
+  .featured-work {
+    padding: 3em 0 !important;
+  }
+
+  .featured-work .featured-titles {
+    gap: 1.5em !important;
+  }
+
+  .featured-work .featured-title-wrapper {
+    gap: 0.8em !important;
+  }
+}
