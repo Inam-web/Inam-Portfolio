@@ -993,7 +993,7 @@
 
   /* Corner badge on image */
   .featured-work .featured-title-wrapper:not(:first-child) .featured-title-img::after {
-    content: '✦' !important;
+    content: '' !important;
     position: absolute !important;
     bottom: 12px !important;
     right: 12px !important;
@@ -1004,7 +1004,7 @@
     width: 36px !important;
     height: 36px !important;
     border-radius: 50% !important;
-    display: flex !important;
+    display: none !important;
     align-items: center !important;
     justify-content: center !important;
     opacity: 0 !important;
