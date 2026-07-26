@@ -71,22 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // Refresh on resize - WITH DEBOUNCE
-  let resizeTimeout;
-  window.addEventListener("resize", () => {
-    // Clear previous timeout
-    clearTimeout(resizeTimeout);
-    
-    // Wait for resize to finish
-    resizeTimeout = setTimeout(() => {
-      // Refresh ScrollTrigger
-      ScrollTrigger.refresh();
-      
-      // Refresh again after a moment
-      setTimeout(() => {
-        ScrollTrigger.refresh();
-      }, 300);
-    }, 300);
-  });
+  // Refresh on resize - WITH DEBOUNCE
+let resizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(resizeTimeout);
+  resizeTimeout = setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 400);
+});
 
   // Refresh on orientation change (mobile)
   window.addEventListener("orientationchange", () => {

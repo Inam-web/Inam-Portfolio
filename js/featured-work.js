@@ -170,3 +170,69 @@ window.addEventListener("resize", () => {
     ScrollTrigger.refresh();
   }, 300);
 });
+
+// featured-work.js - Add this at the end
+
+// ============================================
+// FEATURED WORK - MOBILE SCROLL ANIMATIONS
+// ============================================
+
+const isMobile = window.innerWidth <= 1000;
+
+if (isMobile) {
+  // Select all project cards (skip first "Featured Projects")
+  const cards = document.querySelectorAll('.featured-work .featured-title-wrapper:not(:first-child)');
+
+  // Create Intersection Observer
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        // Add visible class
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  // Observe each card
+  cards.forEach((card) => {
+    observer.observe(card);
+  });
+}
+
+// Fix: Refresh on resize for featured work
+let featuredResizeTimeout;
+window.addEventListener("resize", () => {
+  clearTimeout(featuredResizeTimeout);
+  featuredResizeTimeout = setTimeout(() => {
+    ScrollTrigger.refresh();
+  }, 300);
+});
+
+
+// ============================================
+// PROJECT CARDS - FULL CARD ANIMATIONS
+// ============================================
+
+const isMobileDevice = window.innerWidth <= 1000;
+
+if (isMobileDevice) {
+  const cards = document.querySelectorAll('.featured-work .featured-title-wrapper:not(:first-child)');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {
+    threshold: 0.15,
+    rootMargin: '0px 0px -30px 0px'
+  });
+
+  cards.forEach((card) => {
+    observer.observe(card);
+  });
+}
